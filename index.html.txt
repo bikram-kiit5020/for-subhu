@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Subhu ❤️</title>
+
+<style>
+:root {
+  --bg: #fff0f3;
+  --card: #ffffff;
+  --text: #c9184a;
+  --btn: #ff4d6d;
+}
+
+body.dark {
+  --bg: #0f0f14;
+  --card: #1c1c26;
+  --text: #ff8fab;
+  --btn: #ff4d6d;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Arial Rounded MT Bold', sans-serif;
+  overflow-y: auto;     /* ✅ SCROLL ENABLED */
+  overflow-x: hidden;
+  transition: 0.4s;
+}
+
+/* THEME TOGGLE */
+.toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 10;
+}
+
+/* MAIN PAGE */
+#main {
+  text-align: center;
+}
+
+h1 {
+  color: var(--text);
+  margin-bottom: 40px;
+}
+
+button {
+  padding: 15px 35px;
+  font-size: 1.2rem;
+  border-radius: 50px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+}
+
+#yes {
+  background: var(--btn);
+  color: white;
+  margin-right: 20px;
+}
+
+#no {
+  background: var(--card);
+  color: var(--btn);
+  position: absolute;
+}
+
+/* SUCCESS PAGE */
+#success {
+  display: none;
+  max-width: 720px;
+  background: var(--card);
+  padding: 32px;
+  border-radius: 22px;
+  text-align: center;
+  margin-top: 40px;
+}
+
+.heart {
+  font-size: 72px;
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+.love-text {
+  color: var(--text);
+  font-size: 1.1rem;
+  line-height: 1.75;
+  margin-top: 22px;
+}
+
+/* PHOTOS */
+.photos {
+  display: flex;
+  gap: 14px;
+  margin-top: 26px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.photos img {
+  width: 160px;
+  height: 210px;
+  object-fit: cover;
+  border-radius: 16px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.25);
+}
+
+/* CONFETTI */
+.confetti {
+  position: fixed;
+  top: -10px;
+  animation: fall linear forwards;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(110vh) rotate(360deg);
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="toggle" onclick="toggleTheme()">🌙</div>
+
+<div id="main">
+  <h1>Subhu, will you be my Valentine? ❤️</h1>
+  <button id="yes">Yes 💖</button>
+  <button id="no">No 💔</button>
+</div>
+
+<div id="success">
+  <div class="heart">💕</div>
+
+  <div class="love-text">
+    <p>
+      I wanted to do something a little different this year because a simple
+      card or a standard message just didn’t feel like enough to capture how
+      I feel about you.
+    </p>
+
+    <p>
+      I still wanted to see you smile trying to catch that ‘No’ button.
+      But in my world, ‘No’ isn’t even an option when it comes to us.
+    </p>
+
+    <p>
+      Since the moment you came into my life, everything has felt a little
+      brighter, a little warmer, and a lot more meaningful.
+      You aren’t just my partner, you’re my safe place, my best friend,
+      and the person I want to share every win and every loss with.
+    </p>
+
+    <p>
+      <strong>
+        You truly make me the happiest person in the entire world,
+        and I mean every word when I say:
+        I LOVE YOU my SUBHU 💕😘💋
+      </strong>
+    </p>
+  </div>
+
+  <div class="photos">
+    <img src="photo1.jpg" alt="Our temple visit">
+    <img src="photo2.jpg" alt="Holding hands forever">
+    <img src="photo3.jpg" alt="My favorite person">
+  </div>
+
+  <h2 style="color:var(--text); margin-top:24px;">
+    Happy Valentine’s Day ❤️
+  </h2>
+</div>
+
+<script>
+const noBtn = document.getElementById("no");
+const yesBtn = document.getElementById("yes");
+const main = document.getElementById("main");
+const success = document.getElementById("success");
+
+// NO button evasion
+function moveNo() {
+  const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+  const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+  noBtn.style.left = x + "px";
+  noBtn.style.top = y + "px";
+}
+
+noBtn.addEventListener("mouseover", moveNo);
+noBtn.addEventListener("touchstart", e => {
+  e.preventDefault();
+  moveNo();
+});
+
+// YES button
+yesBtn.onclick = () => {
+  main.style.display = "none";
+  success.style.display = "block";
+  document.body.style.alignItems = "flex-start"; /* ✅ allows natural scroll */
+  confetti();
+};
+
+// CONFETTI
+function confetti() {
+  for (let i = 0; i < 40; i++) {
+    const c = document.createElement("div");
+    c.className = "confetti";
+    c.innerText = Math.random() > 0.5 ? "❤️" : "🌸";
+    c.style.left = Math.random() * 100 + "vw";
+    c.style.fontSize = Math.random() * 22 + 12 + "px";
+    c.style.animationDuration = Math.random() * 3 + 2 + "s";
+    document.body.appendChild(c);
+  }
+}
+
+// THEME TOGGLE
+function toggleTheme() {
+  document.body.classList.toggle("dark");
+  document.querySelector(".toggle").innerText =
+    document.body.classList.contains("dark") ? "☀️" : "🌙";
+}
+</script>
+
+</body>
+</html>
